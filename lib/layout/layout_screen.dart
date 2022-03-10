@@ -1,7 +1,6 @@
+import 'package:adealy/shared/components/components.dart';
 import 'package:adealy/shared/cubit/cubit.dart';
 import 'package:adealy/shared/cubit/states.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +13,7 @@ class LayoutScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = AppCubit.get(context);
+
         return Scaffold(
           appBar: AppBar(
             title: Text(
@@ -23,9 +23,9 @@ class LayoutScreen extends StatelessWidget {
           body: cubit.screens[cubit.currentScreenIndex],
           drawer: Drawer(
             child: ListView(
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.all(16.0),
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(children: [
@@ -33,20 +33,36 @@ class LayoutScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_back)),
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.blue,
+                      )),
                 ]),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Ranking',
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    )),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'الادعية',
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    )),
+                const SizedBox(
+                  height: 10,
+                ),
+                defaultTextButton(
+                    text: "الترتيب",
+                    function: () {},
+                    isBold: true,
+                    fontSizeColor: Colors.blue,
+                    textFontSize: 20.0,
+                    textAlign: TextAlign.start),
+                const SizedBox(
+                  height: 10,
+                ),
+                defaultDivider(paddingEnd: 0, paddingStart: 0),
+                const SizedBox(
+                  height: 10,
+                ),
+                defaultTextButton(
+                    text: "الادعية",
+                    function: () {},
+                    isBold: true,
+                    fontSizeColor: Colors.blue,
+                    textFontSize: 20.0,
+                    textAlign: TextAlign.start),
+                defaultDivider(paddingEnd: 0, paddingStart: 0),
               ],
             ),
           ),
@@ -63,6 +79,7 @@ class LayoutScreen extends StatelessWidget {
             },
           ),
         );
+
       },
     );
   }

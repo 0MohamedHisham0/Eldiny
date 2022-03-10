@@ -86,16 +86,34 @@ Widget defaultTextButton(
         required String text,
         fontSizeColor = Colors.white,
         textFontSize = 16.0,
-        isBold}) =>
+        isBold = false,
+        textAlign = TextAlign.center}) =>
     TextButton(
       onPressed: () {
         function();
       },
-      child: Text(
-        text.toUpperCase(),
-        style: TextStyle(
-            color: fontSizeColor,
-            fontSize: textFontSize,
-            fontWeight: isBold ? FontWeight.bold : FontWeight.normal),
+      child: SizedBox(
+        width: double.infinity,
+        child: Text(
+          text.toUpperCase(),
+          style: TextStyle(
+              color: fontSizeColor,
+              fontSize: textFontSize,
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal),
+          textAlign: textAlign,
+        ),
+      ),
+    );
+
+Widget defaultDivider({
+  double paddingStart = 20.0,
+  double paddingEnd = 20.0,
+}) =>
+    Padding(
+      padding: EdgeInsetsDirectional.only(start: paddingStart, end: paddingEnd),
+      child: Container(
+        width: double.infinity,
+        height: 1.0,
+        color: Colors.grey[300],
       ),
     );
