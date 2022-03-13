@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../layout/layout_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -116,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         defaultTextButton(
                           function: () {
-                            navigateAndFinishTo(context, const SignUpScreen());
+                            navigateAndFinishTo(context, const LayoutScreen());
                           },
                           text: 'انشاء حساب جديد',
                           isBold: true,

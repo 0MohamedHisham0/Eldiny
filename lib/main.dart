@@ -7,7 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'layout/layout_screen.dart';
 import 'modules/el-quran/el_quran.dart';
+import 'modules/el-salah/el_salah_screen.dart';
+import 'modules/el-tlawa/el_tlawa_screen.dart';
+import 'modules/el_ada3ea/el_ada3ea_screen.dart';
 import 'modules/login/login_screen.dart';
+import 'modules/ranking/ranking_scree.dart';
 
 void main() {
   runApp(const MyApp());

@@ -57,7 +57,8 @@ Widget defaultButton({
   bool isUpperCase = true,
   double radius = 3.0,
   required Function function,
-  required String text,
+  required String text, TextStyle? style,
+//  required TextStyle style,
 }) =>
     Container(
       width: width,

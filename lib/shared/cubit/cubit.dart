@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:adealy/app_icons.dart';
+import 'package:adealy/models/surah/surah_list.dart';
 import 'package:adealy/modules/el-khatma/el_khatma_screen.dart';
 import 'package:adealy/modules/el-quran/el_quran.dart';
 import 'package:adealy/modules/el-salah/el_salah_screen.dart';
@@ -7,6 +11,7 @@ import 'package:adealy/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:http/http.dart' as http;
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -14,7 +19,6 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   int currentScreenIndex = 0;
-
   List<Widget> screens = [
     const el_quran_screen(),
     const el_salah_screen(),
@@ -28,13 +32,18 @@ class AppCubit extends Cubit<AppStates> {
     'التلاوة',
     'الخاتمة علي روح المتوفي',
   ];
+
   List<BottomNavigationBarItem> bottomItems = [
-    const BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "القرآن"),
-    const BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "الصلاه"),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.menu_book), label: "التلاوه"),
+      icon: Icon(AppIcons.koran),
+      label: "القرآن",
+    ),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.menu_book), label: "الخاتمة"),
+        icon: Icon(AppIcons.praying), label: "الصلاه"),
+    const BottomNavigationBarItem(
+        icon: Icon(AppIcons.el_telawa), label: "التلاوه"),
+    const BottomNavigationBarItem(
+        icon: Icon(AppIcons.open_hand), label: "الخاتمة"),
   ];
 
   void changeScreenIndex(int index) {
@@ -101,7 +110,7 @@ class AppCubit extends Cubit<AppStates> {
 
   void onOpenApp() {
     int counter = 0;
-
+    var leftDays = 0;
     getDataBase().then((dbList) => {
           if (dbList.isEmpty)
             {
@@ -109,21 +118,53 @@ class AppCubit extends Cubit<AppStates> {
             }
           else
             {
-              if (dbList.first["nowDate"] != getNowDate())
+              if (DateTime.parse(dbList.first["nowDate"]).month == getNowDate().month)
                 {
-                  if (dbList[0]["fagr"] == "0") {counter++},
-                  if (dbList[0]["zohr"] == "0") {counter++},
-                  if (dbList[0]["aser"] == "0") {counter++},
-                  if (dbList[0]["magrb"] == "0") {counter++},
-                  if (dbList[0]["ashaa"] == "0") {counter++},
-                  updateNumOfLeft(dbList[0]["num"] + counter),
-                  updateAllElSalah("0", "0", "0", "0", "0"),
-                  //update Now date
-                  updateOneItemFromDb("nowDate", getNowDate()),
-                  emit(ChangeNumberOfLeftSalahState()),
+                  print("same month"),
+                  if (DateTime.parse(dbList.first["nowDate"]).day !=
+                      getNowDate().day)
+                    {
+                      leftDays = getNowDate().day -
+                          DateTime.parse(dbList.first["nowDate"]).day,
+                      print("leftDays $leftDays"),
+                      if (leftDays == 1)
+                        {
+                          if (dbList[0]["fagr"] == "0") {counter++},
+                          if (dbList[0]["zohr"] == "0") {counter++},
+                          if (dbList[0]["aser"] == "0") {counter++},
+                          if (dbList[0]["magrb"] == "0") {counter++},
+                          if (dbList[0]["ashaa"] == "0") {counter++},
+                          updateNumOfLeft(dbList[0]["num"] + counter),
+
+                          print("one day "),
+                          updateAllElSalah("0", "0", "0", "0", "0"),
+                          //update Now date
+                          updateOneItemFromDb(
+                              "nowDate", getNowDate().toString()),
+                          emit(ChangeNumberOfLeftSalahState()),
+                        },
+                      if (leftDays > 1)
+                        {
+                          if (dbList[0]["fagr"] == "0") {counter++},
+                          if (dbList[0]["zohr"] == "0") {counter++},
+                          if (dbList[0]["aser"] == "0") {counter++},
+                          if (dbList[0]["magrb"] == "0") {counter++},
+                          if (dbList[0]["ashaa"] == "0") {counter++},
+                          updateNumOfLeft(dbList[0]["num"] +
+                              counter +
+                              ((leftDays - 1) * 5)),
+                          print("counter $counter"),
+                          print("multiDays"),
+
+                          updateAllElSalah("0", "0", "0", "0", "0"),
+                          //update Now date
+                          updateOneItemFromDb(
+                              "nowDate", getNowDate().toString()),
+                          emit(ChangeNumberOfLeftSalahState()),
+                        },
+                    }
                 }
             },
-          //update checkBox with the last data
 
           numberOfLeftSalah = dbList[0]["num"],
           emit(ChangeNumberOfLeftSalahState()),
@@ -133,6 +174,7 @@ class AppCubit extends Cubit<AppStates> {
           elAser = stringToBool(dbList[0]["aser"]),
           elMagrb = stringToBool(dbList[0]["magrb"]),
           elAshaa = stringToBool(dbList[0]["ashaa"]),
+
           emit(ChangeCheckBoxElFagrState()),
           emit(ChangeCheckBoxElZharState()),
           emit(ChangeCheckBoxElAserState()),
@@ -183,9 +225,32 @@ class AppCubit extends Cubit<AppStates> {
     await database.rawDelete('DELETE FROM Salah WHERE id = ?', [1]);
   }
 
-  void restLeftSalahNum(){
+  void restLeftSalahNum() {
     updateNumOfLeft(0);
     emit(ChangeNumberOfLeftSalahState());
+  }
+
+  //quranApi
+  static Future<SurahsList> getSurahList() async {
+    String url = "http://api.alquran.cloud/v1/quran/quran-uthmani";
+
+    var response = await http.get(
+      Uri.parse(url),
+    );
+
+    if (response.statusCode == 200) {
+      // // cache in Hive
+      // await _hiveBox.put(
+      //   'surahList',
+      //   SurahsList.fromJSON(
+      //     json.decode(response.body),
+      //   ),
+      // );
+
+      return SurahsList.fromJSON(json.decode(response.body));
+    } else {
+      throw Exception("Failed to Load Post");
+    }
   }
 
 }

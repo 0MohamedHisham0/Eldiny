@@ -1,85 +1,100 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/components/components.dart';
+
 class el_khatma_screen extends StatelessWidget {
   const el_khatma_screen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(25),
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Card(
-                    margin: const EdgeInsets.all(10),
-                    child: Container(
-                        color: Colors.grey,
-                        width: 320,
-                        height: 240,
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage:
-                                      AssetImage("assets/images/user.jpg"),
-                                ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Text(
-                                  'Hassen Ahmed',
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.white),
-                                ),
-                              ],
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Card(
+                        margin: const EdgeInsets.all(10),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(20)
                             ),
-                            SizedBox(
-                              height: 120,
-                            ),
-                            Row(
+                            width: 50,
+                            height: 240,
+                            child: Column(
                               children: [
-                                ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text('Join now',
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 15,right: 15),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: const [
+                                      CircleAvatar(
+                                        radius: 25,
+                                        backgroundImage:
+                                        AssetImage("assets/images/user.jpg"),
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Text(
+                                        'Hassen Ahmed',
                                         style: TextStyle(
-                                          color: Colors.white,
-                                        ))),
-                                SizedBox(
-                                  width: 100,
+                                            fontSize: 20, color: Colors.black),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage:
+                                const SizedBox(
+                                  height: 120,
+                                ),
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width:10,
+                                    ),
+                                    defaultButton(
+                                      radius: 20,
+                                      width: 130,
+                                      function: () {},
+                                      text: 'Join now',
+                                      // style: TextStyle(fontSize: 30), ),
+                                    ),
+                                    const SizedBox(
+                                      width: 30,
+                                    ),
+                                    const CircleAvatar(
+                                      radius: 25,
+                                      backgroundImage:
                                       AssetImage("assets/images/user.jpg"),
-                                ),
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage:
+                                    ),
+                                    const CircleAvatar(
+                                      radius: 25,
+                                      backgroundImage:
                                       AssetImage("assets/images/user.jpg"),
-                                ),
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage:
+                                    ),
+                                    const CircleAvatar(
+                                      radius: 25,
+                                      backgroundImage:
                                       AssetImage("assets/images/user.jpg"),
-                                ),
+                                    ),
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        )));
-              },
-            ),
-          )
-        ],
+                            ))),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

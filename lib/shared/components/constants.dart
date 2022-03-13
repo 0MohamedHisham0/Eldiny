@@ -22,8 +22,8 @@ String boolToString(bool bool) {
   return bool ? "1" : "0";
 }
 
-String getNowDate() {
+DateTime getNowDate() {
   DateTime now = DateTime.now();
   DateTime date = DateTime(now.year, now.month, now.day);
-  return date.toString();
+  return date;
 }

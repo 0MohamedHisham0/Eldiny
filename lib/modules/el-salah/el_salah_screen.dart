@@ -85,7 +85,6 @@ class el_salah_screen extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ), // SizedBox,
-
                     SizedBox(
                       width: double.infinity,
                       child: Padding(
@@ -116,7 +115,6 @@ class el_salah_screen extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ), // SizedBox,
-
                     SizedBox(
                       width: double.infinity,
                       child: Padding(
@@ -147,7 +145,6 @@ class el_salah_screen extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ), // SizedBox,
-//SizedBox
                     SizedBox(
                       width: double.infinity,
                       child: Padding(
@@ -178,7 +175,6 @@ class el_salah_screen extends StatelessWidget {
                     SizedBox(
                       height: 3,
                     ), // SizedBox,
-//SizedBox
                     SizedBox(
                       width: double.infinity,
                       child: Padding(
