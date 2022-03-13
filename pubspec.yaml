@@ -51,6 +51,8 @@ dependencies:
   hive_flutter: ^1.1.0
   shared_preferences: ^2.0.8
 
+  # utils
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +85,8 @@ flutter:
     - assets/images/koran.svg
     - assets/images/open_hand.svg
     - assets/images/praying.svg
+    - assets/images/logo.png
+    - assets/images/logo-white.png
 
   fonts:
     - family: AppIcons

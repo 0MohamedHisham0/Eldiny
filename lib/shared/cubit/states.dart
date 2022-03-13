@@ -15,3 +15,10 @@ class ChangeCheckBoxElMagrbState extends AppStates {}
 class ChangeCheckBoxElAshaaState extends AppStates {}
 
 class ChangeNumberOfLeftSalahState extends AppStates {}
+
+class SurahListSuccessfulState extends AppStates {}
+
+class SurahListErrorState extends AppStates {
+  SurahListErrorState(String error);
+}
+

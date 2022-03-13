@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 Widget defaultTextField(
         {required TextEditingController controller,
@@ -57,7 +60,8 @@ Widget defaultButton({
   bool isUpperCase = true,
   double radius = 3.0,
   required Function function,
-  required String text, TextStyle? style,
+  required String text,
+  TextStyle? style,
 //  required TextStyle style,
 }) =>
     Container(
@@ -116,5 +120,22 @@ Widget defaultDivider({
         width: double.infinity,
         height: 1.0,
         color: Colors.grey[300],
+      ),
+    );
+
+Widget loadingShimmer({
+  required double width,
+  required double height,
+}) =>
+    Shimmer.fromColors(
+      baseColor: Colors.transparent,
+      highlightColor: const Color(0xfff9e9b8),
+      enabled: true,
+      child: Container(
+        width: width,
+        height: height,
+        color: Colors.transparent,
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset('assets/images/logo.png', height: height),
       ),
     );

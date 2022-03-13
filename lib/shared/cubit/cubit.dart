@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:adealy/app_icons.dart';
+import 'package:adealy/models/surah/surah.dart';
 import 'package:adealy/models/surah/surah_list.dart';
 import 'package:adealy/modules/el-khatma/el_khatma_screen.dart';
 import 'package:adealy/modules/el-quran/el_quran.dart';
@@ -118,7 +119,8 @@ class AppCubit extends Cubit<AppStates> {
             }
           else
             {
-              if (DateTime.parse(dbList.first["nowDate"]).month == getNowDate().month)
+              if (DateTime.parse(dbList.first["nowDate"]).month ==
+                  getNowDate().month)
                 {
                   print("same month"),
                   if (DateTime.parse(dbList.first["nowDate"]).day !=
@@ -165,16 +167,13 @@ class AppCubit extends Cubit<AppStates> {
                     }
                 }
             },
-
           numberOfLeftSalah = dbList[0]["num"],
           emit(ChangeNumberOfLeftSalahState()),
-
           elFager = stringToBool(dbList[0]["fagr"]),
           elZhar = stringToBool(dbList[0]["zohr"]),
           elAser = stringToBool(dbList[0]["aser"]),
           elMagrb = stringToBool(dbList[0]["magrb"]),
           elAshaa = stringToBool(dbList[0]["ashaa"]),
-
           emit(ChangeCheckBoxElFagrState()),
           emit(ChangeCheckBoxElZharState()),
           emit(ChangeCheckBoxElAserState()),
@@ -231,7 +230,9 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   //quranApi
-  static Future<SurahsList> getSurahList() async {
+  List<Surah>? surahs = [];
+
+  Future<SurahsList> getSurahListFromApi() async {
     String url = "http://api.alquran.cloud/v1/quran/quran-uthmani";
 
     var response = await http.get(
@@ -253,4 +254,12 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
+  void getSurahList() {
+    getSurahListFromApi()
+        .then((value) =>
+            {surahs = value.surahs, emit(SurahListSuccessfulState())})
+        .catchError((error) {
+      emit(SurahListErrorState(error.toString()));
+    });
+  }
 }
