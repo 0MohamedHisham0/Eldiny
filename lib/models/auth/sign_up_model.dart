@@ -18,6 +18,7 @@ class UserData {
   String? name;
   bool? isHidden;
   String? phone;
+  String? token ;
   int? otp;
   int? finishedPage;
   int? lastPage;
@@ -34,5 +35,6 @@ class UserData {
     finishedPage = json['finishedPage'];
     lastPage = json['lastPage'];
     role = json['role'];
+    token = json['token'];
   }
 }

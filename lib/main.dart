@@ -11,7 +11,7 @@ import 'modules/el-salah/el_salah_screen.dart';
 import 'modules/el-tlawa/el_tlawa_screen.dart';
 import 'modules/el_ada3ea/el_ada3ea_screen.dart';
 import 'modules/login/login_screen.dart';
-import 'modules/ranking/ranking_scree.dart';
+import 'modules/ranking/ranking_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Directionality(
           textDirection: TextDirection.rtl,
-          child: SignUpScreen(),
+          child: LoginScreen(),
         ),
       ),
     );

@@ -13,6 +13,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   var passwordVisibilityState = true;
   var confirmPasswordVisibilityState = true;
   var signUpAcknowledgement = "";
+
   late SignUpModel signUpModel;
 
   bool isVisibleSignUpScreen = true;
@@ -76,7 +77,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       if (status == "success") {
         emit(SignUpSuccessState(signUpModel));
       }
-      if (signUpModel.status == "failed") {
+      if (signUpModel.status == "failed" || signUpModel.status == "Failed") {
         signUpModel = SignUpModel.fromJson(value.data);
          print(message);
         signUpAcknowledgement = message.toString();

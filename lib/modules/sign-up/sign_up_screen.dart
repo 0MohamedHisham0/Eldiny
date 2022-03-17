@@ -102,6 +102,9 @@ class SignUpScreen extends StatelessWidget {
                                           print(value);
                                         }
                                       },
+                                      onChange: (String value) {
+                                        cubit.changeVisibilityErrorState(false);
+                                      },
                                     ),
                                     const SizedBox(
                                       height: 6.0,
