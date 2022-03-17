@@ -30,7 +30,7 @@ class Surah_Quran_Screen extends StatelessWidget {
                   ),
                 )
               : Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: ListView.separated(
                     physics: const BouncingScrollPhysics(),
 
@@ -66,7 +66,7 @@ class Surah_Quran_Screen extends StatelessWidget {
                           //       surahName: _surahs![index].name,
                           //       surahEnglishName: _surahs![index].englishName,
                           //       englishMeaning:
-                          //       _surahs![index].englishNameTranslation,
+                          //       _surahs![index].78zzzzzazxzxxxxxxxxxxxxxxxxxxxZ ,
                           //     ),
                           //   ),
                           // );

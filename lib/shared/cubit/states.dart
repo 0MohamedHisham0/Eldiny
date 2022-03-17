@@ -1,3 +1,5 @@
+import 'package:adealy/models/auth/sign_up_model.dart';
+
 abstract class AppStates {}
 
 class AppInitialState extends AppStates {}

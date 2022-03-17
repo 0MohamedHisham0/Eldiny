@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:adealy/app_icons.dart';
+import 'package:adealy/models/auth/sign_up_model.dart';
 import 'package:adealy/models/surah/surah.dart';
 import 'package:adealy/models/surah/surah_list.dart';
 import 'package:adealy/modules/el-khatma/el_khatma_screen.dart';
 import 'package:adealy/modules/el-quran/el_quran.dart';
 import 'package:adealy/modules/el-salah/el_salah_screen.dart';
 import 'package:adealy/modules/el-tlawa/el_tlawa_screen.dart';
+import 'package:adealy/network/remote/dio_helper.dart';
 import 'package:adealy/shared/components/constants.dart';
 import 'package:adealy/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -257,9 +259,13 @@ class AppCubit extends Cubit<AppStates> {
   void getSurahList() {
     getSurahListFromApi()
         .then((value) =>
-            {surahs = value.surahs, emit(SurahListSuccessfulState())})
+            {
+              surahs = value.surahs, emit(SurahListSuccessfulState())
+            })
         .catchError((error) {
       emit(SurahListErrorState(error.toString()));
     });
   }
+
+
 }
