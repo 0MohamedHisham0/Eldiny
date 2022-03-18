@@ -54,26 +54,6 @@ class LoginScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = LoginCubit.get(context);
 
-        String? email;
-        String? password;
-        String? token;
-
-        //Check if you are login or not
-        CacheHelper.init().then((value) => {
-              email = value.get("email").toString(),
-              password = value.get("password").toString(),
-              token = value.get("token").toString(),
-              print(email),
-              print(password),
-              print(token),
-              if (email!.isNotEmpty &&
-                  password!.isNotEmpty &&
-                  token!.isNotEmpty)
-                {
-                  navigateAndFinishTo(context, const LayoutScreen())
-                }
-            });
-
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(20.0),

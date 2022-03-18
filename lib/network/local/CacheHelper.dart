@@ -1,11 +1,23 @@
+import 'package:adealy/layout/layout_screen.dart';
+import 'package:adealy/modules/login/login_screen.dart';
+import 'package:adealy/shared/components/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
   static late SharedPreferences sharedPreferences;
+  static late bool isLayout;
 
-  static Future<SharedPreferences> init() async {
-    return await SharedPreferences.getInstance();
+  static init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  static Future<Widget> checkUserToken() async {
+    if (sharedPreferences.get("token") != null) {
+      return const LayoutScreen();
+    } else {
+      return const LoginScreen();
+    }
   }
 
   static Future<bool> putBoolean({
@@ -37,5 +49,4 @@ class CacheHelper {
   }) async {
     return await sharedPreferences.remove(key);
   }
-
 }
