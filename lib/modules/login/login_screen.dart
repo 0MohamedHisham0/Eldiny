@@ -27,14 +27,15 @@ class LoginScreen extends StatelessWidget {
         if (state is LoginErrorState) {
           cubit.changeVisibilityState(true);
           cubit.changeVisibilityLoadingState(false);
-
           cubit.changeVisibilityErrorState(true);
+
           print("error ${cubit.loginAcknowledgement}");
         }
         if (state is LoginLoadingState) {
           cubit.changeVisibilityState(false);
           cubit.changeVisibilityLoadingState(true);
           cubit.changeVisibilityErrorState(false);
+
         }
         if (state is LoginSuccessState) {
           var email = emailController.text.toString();
@@ -46,12 +47,13 @@ class LoginScreen extends StatelessWidget {
                   key: "token", value: state.loginModel.data!.token.toString())
               .then((value) =>
                   {
-                    navigateAndFinishTo(context, const LayoutScreen())
+                    navigateTo(context, const LayoutScreen())
                   }
           );
         }
       },
       builder: (context, state) {
+
         var cubit = LoginCubit.get(context);
 
         return Scaffold(
@@ -173,7 +175,7 @@ class LoginScreen extends StatelessWidget {
                                   width: 120,
                                   child: defaultTextButton(
                                     function: () {
-                                      navigateAndFinishTo(
+                                      navigateTo(
                                           context, const LayoutScreen());
                                     },
                                     text: 'انشاء حساب جديد',

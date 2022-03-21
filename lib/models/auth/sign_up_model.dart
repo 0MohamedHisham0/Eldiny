@@ -10,8 +10,7 @@ class SignUpModel {
   }
 
 }
-
-class UserData {
+ class UserData {
   int? id;
   String? email;
   String? password;

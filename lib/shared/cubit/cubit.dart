@@ -242,14 +242,6 @@ class AppCubit extends Cubit<AppStates> {
     );
 
     if (response.statusCode == 200) {
-      // // cache in Hive
-      // await _hiveBox.put(
-      //   'surahList',
-      //   SurahsList.fromJSON(
-      //     json.decode(response.body),
-      //   ),
-      // );
-
       return SurahsList.fromJSON(json.decode(response.body));
     } else {
       throw Exception("Failed to Load Post");

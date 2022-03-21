@@ -41,7 +41,7 @@ class SignUpScreen extends StatelessWidget {
           cubit.changeVisibilityErrorState(false);
         }
         if (state is SignUpSuccessState) {
-          navigateAndFinishTo(context, LayoutScreen());
+          navigateTo(context, LayoutScreen());
         }
       },
       builder: (context, state) {
@@ -236,7 +236,7 @@ class SignUpScreen extends StatelessWidget {
                                   width: 100,
                                   child: defaultTextButton(
                                     function: () {
-                                      navigateAndFinishTo(
+                                      navigateTo(
                                           context, const LoginScreen());
                                     },
                                     text: 'تسجيل الدخول',

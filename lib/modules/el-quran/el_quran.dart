@@ -32,7 +32,7 @@ class el_quran_screen extends StatelessWidget {
 
                 width: 200,
                 function: () {
-                  navigateAndFinishTo(context, Surah_Quran_Screen());
+                  navigateTo(context, Surah_Quran_Screen());
                 },
                 text: 'سور القراءه',
                 // style: TextStyle(fontSize: 30), ),

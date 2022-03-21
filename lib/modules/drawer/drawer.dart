@@ -34,7 +34,7 @@ class drawer_Screen extends StatelessWidget {
           defaultTextButton(
               text: "الترتيب",
               function: () {
-                navigateAndFinishTo(context, const renking_screen());
+                navigateTo(context, const renking_screen());
               },
               isBold: true,
               fontSizeColor: Colors.blue,
@@ -50,7 +50,7 @@ class drawer_Screen extends StatelessWidget {
           defaultTextButton(
               text: "الادعية",
               function: () {
-                navigateAndFinishTo(context, const el_ada3ea_screen());
+                navigateTo(context, const el_ada3ea_screen());
               },
               isBold: true,
               fontSizeColor: Colors.blue,

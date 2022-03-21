@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
-void navigateAndFinishTo(context, screen) {
+void navigateTo(context, screen) {
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -26,4 +26,17 @@ DateTime getNowDate() {
   DateTime now = DateTime.now();
   DateTime date = DateTime(now.year, now.month, now.day);
   return date;
+}
+
+String getCurrentTimeStamp() {
+  return DateTime.now().millisecondsSinceEpoch.toString();
+}
+
+double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+
+TimeOfDay toTimeOfDay(String s) {
+  String min, hour;
+  hour = s.split(":")[0].replaceAll("TimeOfDay(", "");
+  min = s.split(":")[1].replaceAll(")", "");
+  return TimeOfDay(hour: int.parse(hour), minute: int.parse(min));
 }

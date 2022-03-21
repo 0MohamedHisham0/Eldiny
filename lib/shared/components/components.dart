@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -17,10 +14,12 @@ Widget defaultTextField(
         IconData? suffix,
         Function? suffixPressed,
         bool isClickable = true,
+        bool isReadOnly = false, //Clickable and not editable
         double borderRadius = 16.0}) =>
     TextFormField(
       controller: controller,
       keyboardType: type,
+      readOnly: isReadOnly,
       obscureText: isPassword,
       enabled: isClickable,
       onFieldSubmitted: (value) {
@@ -55,19 +54,20 @@ Widget defaultTextField(
     );
 
 Widget defaultButton({
-  double width = double.infinity,
+  double width = 100,
+  double height = 50,
   Color background = Colors.blue,
   bool isUpperCase = true,
-  double radius = 3.0,
+  double radius = 16.0,
   required Function function,
   required String text,
   TextStyle? style,
 //  required TextStyle style,
 }) =>
-    Container(
+    SizedBox(
       width: width,
-      height: 50.0,
-      child: MaterialButton(
+      height: height,
+      child: ElevatedButton(
         onPressed: () {
           function();
         },
@@ -77,12 +77,17 @@ Widget defaultButton({
             color: Colors.white,
           ),
         ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          radius,
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius),
+              side: BorderSide(
+                color: background,
+                width: width,
+              ),
+            ),
+          ),
         ),
-        color: background,
       ),
     );
 

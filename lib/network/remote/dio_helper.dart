@@ -1,7 +1,9 @@
+import 'package:adealy/network/local/CacheHelper.dart';
 import 'package:dio/dio.dart';
 
 class DioHelper {
   static Dio? dio;
+  static String token = "bearer ${CacheHelper.getData(key: "token") ?? ""}";
 
   static init() async {
     dio = Dio(
@@ -28,11 +30,14 @@ class DioHelper {
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
   }) async {
+    dio!.options.headers = {
+      'Authorization': token,
+    };
     if (dio == null) {
-      init();
-      return  dio!.post(url, queryParameters: query, data: data);
+    init();
+    return dio!.post(url, queryParameters: query, data: data);
     } else {
-      return dio!.post(url, queryParameters: query, data: data);
+    return dio!.post(url, queryParameters: query, data: data);
     }
   }
 
@@ -42,9 +47,9 @@ class DioHelper {
   }) async {
     if (dio == null) {
       init();
-      return  dio!.post(url, data: data);
+      return dio!.post(url, data: data);
     } else {
-      return dio!.post(url,  data: data);
+      return dio!.post(url, data: data);
     }
   }
 }

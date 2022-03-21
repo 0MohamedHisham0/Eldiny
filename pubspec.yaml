@@ -80,13 +80,13 @@ flutter:
 
 
   assets:
-    - assets/images/user.jpg
     - assets/images/el_telawa.svg
     - assets/images/koran.svg
     - assets/images/open_hand.svg
     - assets/images/praying.svg
     - assets/images/logo.png
     - assets/images/logo-white.png
+    - assets/images/user.png
 
   fonts:
     - family: AppIcons

@@ -25,21 +25,22 @@ class el_khatma_screen extends StatelessWidget {
                         child: Container(
                             decoration: BoxDecoration(
                                 color: Colors.grey,
-                                borderRadius: BorderRadius.circular(20)
-                            ),
+                                borderRadius: BorderRadius.circular(20)),
                             width: 50,
                             height: 240,
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 15,right: 15),
+                                  padding:
+                                      const EdgeInsets.only(top: 15, right: 15),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: const [
                                       CircleAvatar(
                                         radius: 25,
-                                        backgroundImage:
-                                        AssetImage("assets/images/user.jpg"),
+                                        backgroundImage: AssetImage(
+                                            "assets/images/user.jpg"),
                                       ),
                                       SizedBox(
                                         width: 15,
@@ -58,7 +59,7 @@ class el_khatma_screen extends StatelessWidget {
                                 Row(
                                   children: [
                                     const SizedBox(
-                                      width:10,
+                                      width: 10,
                                     ),
                                     defaultButton(
                                       radius: 20,
@@ -73,17 +74,17 @@ class el_khatma_screen extends StatelessWidget {
                                     const CircleAvatar(
                                       radius: 25,
                                       backgroundImage:
-                                      AssetImage("assets/images/user.jpg"),
+                                          AssetImage("assets/images/user.jpg"),
                                     ),
                                     const CircleAvatar(
                                       radius: 25,
                                       backgroundImage:
-                                      AssetImage("assets/images/user.jpg"),
+                                          AssetImage("assets/images/user.jpg"),
                                     ),
                                     const CircleAvatar(
                                       radius: 25,
                                       backgroundImage:
-                                      AssetImage("assets/images/user.jpg"),
+                                          AssetImage("assets/images/user.jpg"),
                                     ),
                                   ],
                                 )
@@ -98,4 +99,5 @@ class el_khatma_screen extends StatelessWidget {
       ),
     );
   }
+
 }

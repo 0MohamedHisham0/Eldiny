@@ -1,3 +1,4 @@
+import 'package:adealy/modules/el-tlawa/cubit/cubit.dart';
 import 'package:adealy/modules/login/cubit/cubit.dart';
 import 'package:adealy/modules/sign-up/cubit/cubit.dart';
 import 'package:adealy/modules/sign-up/sign_up_screen.dart';
@@ -18,7 +19,6 @@ import 'network/local/CacheHelper.dart';
 import 'network/remote/dio_helper.dart';
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = MyBlocObserver();
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppCubit()..createDb()),
         BlocProvider(create: (BuildContext context) => LoginCubit()),
         BlocProvider(create: (BuildContext context) => SignUpCubit()),
+        BlocProvider(create: (BuildContext context) => TlawaCubit()..getPosts(0, 10)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
