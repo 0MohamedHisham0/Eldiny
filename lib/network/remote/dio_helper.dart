@@ -41,6 +41,22 @@ class DioHelper {
     }
   }
 
+  static Future<Response> putData({
+    required String url,
+    required Map<String, dynamic> data,
+    Map<String, dynamic>? query,
+  }) async {
+    dio!.options.headers = {
+      'Authorization': token,
+    };
+    if (dio == null) {
+    init();
+    return dio!.put(url, queryParameters: query, data: data);
+    } else {
+    return dio!.put(url, queryParameters: query, data: data);
+    }
+  }
+
   static Future<Response> postDataWithoutQuery({
     required String url,
     required Map<String, dynamic> data,

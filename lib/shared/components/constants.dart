@@ -1,6 +1,6 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+
 
 void navigateTo(context, screen) {
   Navigator.push(
@@ -40,3 +40,7 @@ TimeOfDay toTimeOfDay(String s) {
   min = s.split(":")[1].replaceAll(")", "");
   return TimeOfDay(hour: int.parse(hour), minute: int.parse(min));
 }
+
+// String formatDate(String date) {
+//   return DateFormat("EEE, d MMM yyyy HH:mm:ss").format(DateTime.parse(date));
+// }

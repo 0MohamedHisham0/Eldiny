@@ -1,3 +1,4 @@
+
 class SignUpModel {
   String? status;
   String? message;
@@ -10,6 +11,7 @@ class SignUpModel {
   }
 
 }
+
  class UserData {
   int? id;
   String? email;

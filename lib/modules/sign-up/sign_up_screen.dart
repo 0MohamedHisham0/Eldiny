@@ -41,7 +41,7 @@ class SignUpScreen extends StatelessWidget {
           cubit.changeVisibilityErrorState(false);
         }
         if (state is SignUpSuccessState) {
-          navigateTo(context, LayoutScreen());
+          navigateTo(context, const LoginScreen());
         }
       },
       builder: (context, state) {

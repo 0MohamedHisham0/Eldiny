@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget defaultTextField(
@@ -63,8 +64,7 @@ Widget defaultButton({
   required String text,
   TextStyle? style,
 //  required TextStyle style,
-}) =>
-    SizedBox(
+}) => SizedBox(
       width: width,
       height: height,
       child: ElevatedButton(
@@ -83,7 +83,7 @@ Widget defaultButton({
               borderRadius: BorderRadius.circular(radius),
               side: BorderSide(
                 color: background,
-                width: width,
+                width: 100,
               ),
             ),
           ),
@@ -144,3 +144,12 @@ Widget loadingShimmer({
         child: Image.asset('assets/images/logo.png', height: height),
       ),
     );
+Future<bool?> toast(message){
+  return Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      textColor: Colors.white,
+      fontSize: 16.0);
+}

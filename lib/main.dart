@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppCubit()..createDb()),
         BlocProvider(create: (BuildContext context) => LoginCubit()),
         BlocProvider(create: (BuildContext context) => SignUpCubit()),
-        BlocProvider(create: (BuildContext context) => TlawaCubit()..getPosts(0, 10)),
+        BlocProvider(create: (BuildContext context) => TlawaCubit()..getPosts(0, 20)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

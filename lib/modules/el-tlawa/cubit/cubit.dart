@@ -12,7 +12,7 @@ class TlawaCubit extends Cubit<TlawaState> {
 
   Posts? posts;
   bool isBottomSheetShown = false;
-  var floatingActionButtonIcon = Icons.add;
+  var floatingActionButtonIcon = Icons.post_add;
 
   void changeBottomSheetState(bool isShow, dynamic icon) {
     isBottomSheetShown = isShow;
@@ -35,8 +35,8 @@ class TlawaCubit extends Cubit<TlawaState> {
   }
 
   void addPost(String timeToStart, String timeToEnd, int numberOfJuzz) {
-    DioHelper.postData(url: "/api/posts", data: {
-      "title": timeToStart,
+    DioHelper.postData(url: "api/posts", data: {
+      "timeToStart": timeToStart,
       "timeToEnd": timeToEnd,
       "numberOfJuzz": numberOfJuzz
     })
@@ -47,6 +47,41 @@ class TlawaCubit extends Cubit<TlawaState> {
             })
         .catchError((error) {
       emit(AddPostErrorState(error));
+      print(error);
+    });
+  }
+
+  void joinInPost(int? postId) {
+    emit(JoinPostLoadingState());
+    DioHelper.putData(url: "api/posts/$postId", data: {})
+        .then((value) => {
+              getPosts(0, 20),
+              emit(JoinPostSuccessfullyState()),
+              print(value.data["status"]),
+              print(value.data["message"])
+            })
+        .catchError((error) {
+      emit(JoinPostErrorState(error));
+      print(error);
+    });
+  }
+
+  void submitInPost(int? postId) {
+    emit(SubmitPostLoadingState());
+    DioHelper.putData(url: "api/posts/submit/$postId", data: {})
+        .then((value) => {
+              if (value.data["status"] == "success")
+                {
+                  emit(SubmitPostSuccessfullyState()),
+                  getPosts(0, 20),
+                }
+              else
+                {
+                  emit(SubmitPostErrorState(value.data["message"]))
+                },
+            })
+        .catchError((error) {
+      emit(SubmitPostErrorState(error));
       print(error);
     });
   }

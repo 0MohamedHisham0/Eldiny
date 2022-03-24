@@ -54,6 +54,10 @@ dependencies:
   # utils
   shimmer: ^2.0.0
 
+  pin_code_fields: ^7.3.0
+  intl: ^0.17.0
+  fluttertoast: ^8.0.9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

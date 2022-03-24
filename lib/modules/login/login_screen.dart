@@ -43,6 +43,7 @@ class LoginScreen extends StatelessWidget {
 
           CacheHelper.saveData(key: "email", value: email);
           CacheHelper.saveData(key: "password", value: password);
+          CacheHelper.saveData(key: "userId", value: state.loginModel.data!.id);
           CacheHelper.saveData(
                   key: "token", value: state.loginModel.data!.token.toString())
               .then((value) =>

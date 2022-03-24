@@ -24,7 +24,7 @@ class PostData {
   int? id;
   String? timeToStart;
   String? timeToEnd;
-  String? title;
+  String? cretedAt;
   int? numberOfJuzz;
   bool? done;
 
@@ -40,7 +40,7 @@ class PostData {
     id = json['id'];
     timeToStart = json['timeToStart'];
     timeToEnd = json['timeToEnd'];
-    title = json['title'];
+    cretedAt = json['cretedAt'];
     numberOfJuzz = json['numberOfJuzz'];
     done = json['done'];
     joined = json['joined'];
